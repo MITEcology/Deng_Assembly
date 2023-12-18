@@ -31,7 +31,7 @@ body_mass <- sort(rlnorm(num_sp, meanlog_mass, sdlog_mass))
 r_max <- body_mass^{alpha}
 
 # calculate the standard deviation of rmax
-sd_rmax <- c(sd_rmax, sd(r_max))
+sd(r_max)
 
 # generate interaction matrix using rmax
 A <- ScalingInteractionMatrixRmax(rmax = r_max, stable = TRUE)
@@ -51,5 +51,5 @@ simultaneous_development <- developmental_probability$simu_prob # simultaneous d
 optimal_path <- OptimalPath(A = A, transition_matrix = transition_matrix) # 
 
 # calculate the Spearman's rank correlation between optimal path and rmax
-# used in the y-axis of Fig 2B
+# calculated 10000 correlations for the y-axis of Fig 2B and then averaged by rmax groups
 cor_rmax_optimal <- cor(r_max, optimal_path, method = "spearman")
